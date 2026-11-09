@@ -1,0 +1,342 @@
+/* Three tanks in series: closed-loop control -- page styles.
+   Visual language copied from the earlier propane + water site:
+   light slate sidebar, off-white main column, white thin-bordered cards,
+   dark slate text, one red accent, one secondary blue. */
+
+:root {
+  --bg: #f8fafc;
+  --sidebar-bg: #f1f5f9;
+  --card-bg: #ffffff;
+  --border: #e2e8f0;
+  --text: #1e293b;
+  --muted: #64748b;
+  --accent: #dc2626;
+  --accent-dark: #b91c1c;
+  --blue: #2563eb;
+  --ok: #15803d;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  display: flex;
+  align-items: stretch;
+}
+
+/* ---------- sidebar ---------- */
+
+.sidebar {
+  width: 300px;
+  flex: 0 0 300px;
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--border);
+  padding: 20px 18px;
+  min-height: 100vh;
+}
+
+.side-group { margin-bottom: 26px; }
+
+.side-group h2 {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin: 0 0 10px;
+}
+
+.sidebar label {
+  display: block;
+  font-size: 13px;
+  margin: 10px 0 4px;
+}
+
+.sidebar input,
+.sidebar select {
+  width: 100%;
+  padding: 7px 9px;
+  font-size: 14px;
+  color: var(--text);
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.sidebar input:focus,
+.sidebar select:focus {
+  outline: 2px solid var(--blue);
+  outline-offset: 0;
+  border-color: transparent;
+}
+
+.side-note { font-size: 12px; color: var(--muted); line-height: 1.45; }
+
+.side-footer { border-top: 1px solid var(--border); padding-top: 14px; }
+
+.badge {
+  display: inline-block;
+  font-size: 12px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: #e2e8f0;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.badge.ready { background: #dcfce7; color: var(--ok); }
+
+/* ---------- main column ---------- */
+
+.main {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 980px;
+  padding: 28px 34px 60px;
+}
+
+.main h1 { font-size: 28px; margin: 0 0 8px; }
+.main h2 { font-size: 18px; margin: 26px 0 10px; }
+
+.intro { color: var(--muted); line-height: 1.55; margin: 0 0 20px; max-width: 72ch; }
+
+/* ---------- flowsheet strip ---------- */
+
+.flowsheet {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+
+.unit {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 9px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.unit.vessel { border-style: dashed; }
+.unit.highlight { border-color: var(--blue); }
+.unit-name { font-size: 13px; font-weight: 600; }
+.unit-value { font-size: 12px; color: var(--muted); }
+.arrow { color: var(--muted); }
+
+/* ---------- stat cards ---------- */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.card-label { font-size: 13px; color: var(--muted); }
+.card-value { font-size: 30px; font-weight: 700; line-height: 1.1; }
+.card-sub { font-size: 12px; color: var(--muted); }
+.card-sub a { color: var(--blue); text-decoration: none; }
+.card-sub a:hover { text-decoration: underline; }
+
+.pill {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: #e2e8f0;
+  color: var(--muted);
+  font-size: 12px;
+}
+.pill.ok { background: #dcfce7; color: var(--ok); }
+.pill.bad { background: #fee2e2; color: var(--accent-dark); }
+
+/* ---------- warnings ---------- */
+
+.warnings {
+  border: 1px solid var(--accent);
+  background: #fef2f2;
+  color: var(--accent-dark);
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 18px;
+}
+
+/* ---------- tabs ---------- */
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 2px solid var(--border);
+  margin: 10px 0 18px;
+}
+.tab {
+  appearance: none;
+  background: none;
+  border: none;
+  font: inherit;
+  font-size: 15px;
+  color: var(--muted);
+  padding: 9px 14px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+}
+.tab:hover { color: var(--text); }
+.tab.active { color: var(--text); font-weight: 600; border-bottom-color: var(--accent); }
+
+/* ---------- live process view / unit inspector ---------- */
+
+.diagram {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  background: #0f172a;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+.diagram-unit {
+  font: inherit;
+  text-align: left;
+  background: #1e293b;
+  color: #e2e8f0;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.diagram-unit:hover { border-color: #94a3b8; }
+.diagram-unit.selected { border-color: var(--accent); outline: 2px solid var(--accent); }
+.diagram-unit .unit-name { color: #f8fafc; }
+.diagram-unit .unit-value { color: #94a3b8; }
+
+.inspector {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 18px;
+  line-height: 1.55;
+}
+.inspector p { margin: 8px 0 0; font-size: 14px; color: var(--muted); }
+
+/* ---------- transport / time step-through controls ---------- */
+
+.transport {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+.tbtn {
+  font: inherit;
+  font-size: 14px;
+  padding: 7px 13px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.tbtn.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+.tbtn.primary:hover { background: var(--accent-dark); }
+.tbtn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.slider-label { font-size: 13px; color: var(--muted); margin-left: 8px; }
+input[type="range"] { accent-color: var(--accent); width: 200px; }
+.caption { font-size: 13px; color: var(--muted); margin: 4px 0 8px; }
+
+/* ---------- level ledger table ---------- */
+
+table.streams {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: 14px;
+}
+table.streams th,
+table.streams td { padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+table.streams th { color: var(--muted); font-weight: 600; font-size: 13px; }
+table.streams tr:last-child td { border-bottom: none; }
+.balance-row td { color: var(--muted); font-style: italic; }
+
+/* ---------- charts (Plotly draws inside these) ---------- */
+
+.chart {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--card-bg);
+  min-height: 360px;
+  padding: 6px;
+}
+
+/* ---------- theory tab ---------- */
+
+.tab-panel > p { line-height: 1.55; max-width: 75ch; }
+
+.eq {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  background: var(--sidebar-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  text-align: center;
+  font-size: 15px;
+}
+
+/* ---------- theory / python tab placeholders ---------- */
+
+.placeholder-note { color: var(--muted); line-height: 1.55; max-width: 72ch; }
+.section-outline { line-height: 1.7; color: var(--text); }
+
+/* Python tab: heading, explanation box, in->out line, code. */
+.code-section { margin-bottom: 28px; }
+.code-section h3 { margin: 0 0 8px; font-size: 16px; }
+.code-explain {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.code-inout { font-size: 12px; color: var(--muted); margin: 8px 0 6px; }
+pre.code-block {
+  background: #0f172a;
+  color: #e2e8f0;
+  border-radius: 10px;
+  padding: 14px 16px;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* ---------- small screens: sidebar stacks on top ---------- */
+
+@media (max-width: 900px) {
+  body { flex-direction: column; }
+  .sidebar { width: 100%; flex: none; min-height: 0; }
+  .main { padding: 20px; }
+  .cards { grid-template-columns: 1fr; }
+}
